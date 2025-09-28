@@ -16,7 +16,7 @@ const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 app.post("/api/comment", async (req, res) => {
   try {
     //フロント側から日記テキスト、geminiへの設定を取得
-    const { diaryText, geminiSettings } = req.body;
+    let { diaryText, geminiSettings } = req.body;
 
     //日記データが無い場合
     if (!diaryText || diaryText.trim() === "") {
@@ -27,6 +27,7 @@ app.post("/api/comment", async (req, res) => {
     const systemPrompt = `日記の書き手の性別は${geminiSettings.authorSex}です。あなたの性別は${geminiSettings.geminiSex}、あなたは日記の書き手の${geminiSettings.geminiRelationship}です。これから送られてくる日記の内容に対して、常に優しく、すべてを肯定するようなポジティブな立場で、感想を伝えてください。場合によってはアドバイスもしてください。共感し、寄り添うような温かいコメントを100文字程度の日本語で返してください。`;
 
     //geminiへ渡すユーザーのテキスト
+    diaryText = diaryText.replace(/\r\n/g, '\n');
     const userPrompt = `【日記】\n${diaryText}`;
 
     //geminiのAPI
