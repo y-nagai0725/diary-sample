@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -6,7 +8,7 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 
-const GEMINI_API_KEY = "AIzaSyAhCndyHw_Hgka7yU5fcD1dA9sXIdO6wyU";
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
 /**
  * 日記テキストをgeminiAPIに渡し、コメントをもらう
