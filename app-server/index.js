@@ -23,8 +23,13 @@ app.post("/api/comment", async (req, res) => {
       return res.status(400).json({ error: '日記の内容がありません。' });
     }
 
+    //geminiへの設定文字列作成
+    const authorSexPrompt = geminiSettings.authorSex !== "無し" ? `日記の書き手の性別は${geminiSettings.authorSex}です。` : `日記の書き手の性別の指定はありません。`;
+    const geminiSexPrompt = geminiSettings.geminiSex !== "無し" ? `あなたの性別は${geminiSettings.geminiSex}です。` : `あなたの性別の指定はありません。`;
+    const geminiRelationshipPrompt = geminiSettings.geminiRelationship !== "無し" ? `あなたは日記の書き手の${geminiSettings.geminiRelationship}です。` : `あなたと日記の書き手の関係性の指定はありません。`;
+
     //geminiへの指示設定
-    const systemPrompt = `日記の書き手の性別は${geminiSettings.authorSex}です。あなたの性別は${geminiSettings.geminiSex}、あなたは日記の書き手の${geminiSettings.geminiRelationship}です。これから送られてくる日記の内容に対して、常に優しく、すべてを肯定するようなポジティブな立場で、感想を伝えてください。場合によってはアドバイスもしてください。共感し、寄り添うような温かいコメントを100文字程度の日本語で返してください。`;
+    const systemPrompt = `${authorSexPrompt}${geminiSexPrompt}${geminiRelationshipPrompt}これから送られてくる日記の内容に対して、常に優しく、すべてを肯定するようなポジティブな立場で、感想を伝えてください。場合によってはアドバイスもしてください。共感し、寄り添うような温かいコメントを100文字程度の日本語で返してください。`;
 
     //geminiへ渡すユーザーのテキスト
     diaryText = diaryText.replace(/\r\n/g, '\n');
@@ -73,19 +78,6 @@ app.post("/api/comment", async (req, res) => {
   }
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 app.listen(port, () => {
-  console.log(`サーバーが http://localhost:${port} で起動したよ、お兄ちゃん♡`);
+  console.log(`サーバーが http://localhost:${port} で起動したよ。`);
 });

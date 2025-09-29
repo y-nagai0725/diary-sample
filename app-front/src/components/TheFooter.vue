@@ -1,0 +1,220 @@
+<template>
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__box-wrapper">
+        <div class="footer__left-box">
+          <a
+            href="https://portfolio.mikanbako.jp"
+            class="footer__home-link"
+            target="_blank"
+          >
+            <img
+              class="footer__logo"
+              src="../assets/images/common_site-logo.svg"
+              alt="NAGAI YOSHITAKA"
+            />
+          </a>
+          <span class="footer__text">勉強したことを作品としてアウトプット</span>
+        </div>
+        <nav class="footer__right-box">
+          <ul class="footer__list">
+            <li class="footer__item">
+              <a
+                href="https://portfolio.mikanbako.jp"
+                class="footer__link"
+                target="_blank"
+                >ポートフォリオ</a
+              >
+            </li>
+            <li class="footer__item">
+              <a
+                href="https://portfolio.mikanbako.jp/works/index.html"
+                class="footer__link"
+                target="_blank"
+                >作品紹介</a
+              >
+            </li>
+            <li class="footer__item">
+              <a
+                href="https://blog.mikanbako.jp"
+                class="footer__link"
+                target="_blank"
+                >技術ブログ</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <span class="footer__copyright">&copy; 2025 NAGAI YOSHITAKA.</span>
+    </div>
+  </footer>
+</template>
+<style lang="scss" scoped>
+.footer {
+  padding: 3.2rem 0 1.6rem;
+  background-color: $light-blue;
+  position: relative;
+
+  @include tab {
+    padding: 4.8rem 0 2.4rem;
+  }
+
+  @include pc {
+    padding: 5.6rem 0 3.2rem;
+  }
+
+  &.dark {
+    background-color: var(--background-color);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--font-color);
+    }
+  }
+
+  &__inner {
+    @include contents-width;
+  }
+
+  &__box-wrapper {
+    margin-bottom: 2.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+
+    @include tab {
+      margin-bottom: 3.2rem;
+      gap: 3.2rem;
+    }
+
+    @include pc {
+      margin-bottom: 4rem;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 0;
+    }
+  }
+
+  &__left-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+
+    @include tab {
+      gap: 1rem;
+    }
+
+    @include pc {
+      gap: 1.6rem;
+    }
+  }
+
+  &__home-link {
+    padding: 10px 0;
+    width: fit-content;
+    transition: opacity 0.3s ease-out;
+
+    @include hover {
+      opacity: 0.7;
+    }
+  }
+
+  &__logo {
+    width: 20rem;
+
+    @include tab {
+      width: 24rem;
+    }
+
+    @include pc {
+      width: clamp(240px, 28rem, 280px);
+    }
+  }
+
+  &__text {
+    color: $white;
+    font-weight: 700;
+    font-size: clamp(11px, 1.1rem, 12px);
+
+    @include tab {
+      font-size: clamp(12px, 1.2rem, 13px);
+    }
+
+    @include pc {
+      font-size: 14px;
+    }
+  }
+
+  &__right-box {
+  }
+
+  &__list {
+    display: flex;
+    gap: 2.4rem;
+
+    @include tab {
+      gap: 3.2rem;
+    }
+
+    @include pc {
+      gap: 4rem;
+    }
+  }
+
+  &__link {
+    padding: 10px 0;
+    color: $white;
+    font-weight: 700;
+    font-size: clamp(12px, 1.2rem, 14px);
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: $white;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.3s ease-out;
+    }
+
+    @include hover {
+      &::before {
+        transform: scaleX(1);
+      }
+    }
+
+    @include tab {
+      font-size: clamp(14px, 1.4rem, 15px);
+    }
+
+    @include pc {
+      font-size: clamp(15px, 1.6rem, 16px);
+    }
+  }
+
+  &__copyright {
+    display: block;
+    color: $white;
+    font-size: 10px;
+    text-align: center;
+
+    @include tab {
+      font-size: 11px;
+    }
+
+    @include pc {
+      font-size: 12px;
+      text-align: right;
+    }
+  }
+}
+</style>

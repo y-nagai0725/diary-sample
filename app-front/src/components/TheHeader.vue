@@ -1,0 +1,127 @@
+<template>
+  <header class="header">
+    <a
+      href="https://portfolio.mikanbako.jp"
+      class="header__home-link"
+      target="_blank"
+    >
+      <img
+        class="header__logo"
+        src="../assets/images/common_site-logo.svg"
+        alt="NAGAI YOSHITAKA"
+      />
+    </a>
+    <nav class="header__nav">
+      <ul class="header__list">
+        <li class="header__item">
+          <a
+            href="https://portfolio.mikanbako.jp"
+            class="header__link"
+            target="_blank"
+            >ポートフォリオ</a
+          >
+        </li>
+        <li class="header__item">
+          <a
+            href="https://portfolio.mikanbako.jp/works/index.html"
+            class="header__link"
+            target="_blank"
+            >作品紹介</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </header>
+</template>
+<style lang="scss" scoped>
+.header {
+  padding: 1rem 2rem;
+  background-color: $light-blue;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  @include tab {
+    padding: 1.4rem 3rem;
+  }
+
+  @include pc {
+    padding: 1.6rem 3.2rem;
+  }
+
+  &__home-link {
+    padding: 10px 0;
+    width: fit-content;
+    transition: opacity 0.3s ease-out;
+
+    @include hover {
+      opacity: 0.7;
+    }
+  }
+
+  &__logo {
+    width: 15rem;
+
+    @include tab {
+      width: 17rem;
+    }
+
+    @include pc {
+      width: clamp(170px, 20rem, 200px);
+    }
+  }
+
+  &__nav {
+  }
+
+  &__list {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.6rem;
+
+    @include tab {
+      gap: 2.4rem;
+    }
+
+    @include pc {
+      gap: 3.2rem;
+    }
+  }
+
+  &__link {
+    padding: 10px 0;
+    color: $white;
+    font-weight: 700;
+    font-size: clamp(11px, 1.1rem, 12px);
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: $white;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.3s ease-out;
+    }
+
+    @include hover {
+      &::before {
+        transform: scaleX(1);
+      }
+    }
+
+    @include tab {
+      font-size: clamp(12px, 1.2rem, 14px);
+    }
+
+    @include pc {
+      font-size: clamp(14px, 1.6rem, 16px);
+    }
+  }
+}
+</style>
