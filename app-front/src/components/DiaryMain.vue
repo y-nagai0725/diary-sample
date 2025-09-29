@@ -2,7 +2,7 @@
 import { ref, onMounted, watch } from "vue";
 import axios from "axios";
 
-const pageUrl = "http://localhost:3000";
+const pageUrl = import.meta.env.VITE_API_BASE_URL;
 
 const diaryText = ref("");
 const authorSex = ref("");
@@ -258,7 +258,7 @@ watch(geminiSex, () => {
         class="diary__submit-button"
       >
         <span v-if="!isLoading">Geminiにコメントをもらう</span>
-        <span v-else>Gemini考え中...</span>
+        <span v-else class="diary__loading">Gemini考え中...</span>
       </button>
     </div>
 
@@ -454,7 +454,7 @@ watch(geminiSex, () => {
     transition: background-color 0.3s ease-out, color 0.3s ease-out;
 
     &:disabled {
-      cursor: not-allowed;
+      cursor: progress;
       color: $light-black;
       background-color: $gray;
     }
@@ -469,6 +469,29 @@ watch(geminiSex, () => {
       max-width: 320px;
       padding: 2.4rem;
       font-size: clamp(16px, 1.8rem, 18px);
+    }
+  }
+
+  &__loading {
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: -3em;
+      transform: translateY(-50%);
+      width: 2em;
+      aspect-ratio: 1;
+      border-radius: 100vmax;
+      border: 3px solid $light-black;
+      border-top-color: $black;
+      animation: spinner 1.5s linear infinite;
+    }
+
+    @keyframes spinner {
+      to {
+        transform: translateY(-50%) rotate(360deg);
+      }
     }
   }
 

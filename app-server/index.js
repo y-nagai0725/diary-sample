@@ -54,7 +54,9 @@ app.post("/api/comment", async (req, res) => {
 
     //正常なレスポンスがない場合
     if (!geminiResponse.ok) {
-      throw new Error(`APIエラーが発生しました。ステータス: ${geminiResponse.status}`);
+      const errorBody = await geminiResponse.json();
+      console.error('Gemini API Error:', errorBody);
+      throw new Error(`APIエラー: ${errorBody.error.message || geminiResponse.statusText}`);
     }
 
     //結果をjson形式で取得
@@ -74,7 +76,7 @@ app.post("/api/comment", async (req, res) => {
 
   } catch (error) {
     console.error('Error in /api/comment:', error);
-    res.status(500).json({ error: 'サーバーでエラーが発生しました。' });
+    res.status(500).json({ error: error.message || 'サーバーでエラーが発生しました。' });
   }
 });
 
