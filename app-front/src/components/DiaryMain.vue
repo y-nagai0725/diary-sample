@@ -12,12 +12,18 @@ const geminiComment = ref("");
 const isLoading = ref(false);
 const error = ref("");
 
+/**
+ * Geminiへの設定の初期化
+ */
 function initGeminiSettings() {
   authorSex.value = "無し";
   geminiSex.value = "無し";
   geminiRelationship.value = "無し";
 }
 
+/**
+ * Geminiからコメントをもらう
+ */
 async function getGeminiComment() {
   //入力チェック
   if (!diaryText.value) {
