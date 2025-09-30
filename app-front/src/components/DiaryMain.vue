@@ -454,7 +454,7 @@ watch(geminiSex, () => {
     transition: background-color 0.3s ease-out, color 0.3s ease-out;
 
     &:disabled {
-      cursor: progress;
+      cursor: not-allowed;
       color: $light-black;
       background-color: $gray;
     }
