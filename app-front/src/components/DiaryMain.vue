@@ -89,7 +89,7 @@ watch(geminiSex, () => {
   <div class="diary">
     <h1 class="diary__title">日記アプリ</h1>
     <p class="diary__description">
-      今日あった出来事を書いてみてね。Geminiが優しくコメントをくれるよ♡
+      今日あった出来事を書いてみてね。Geminiが優しくコメントをくれるよ!!
     </p>
 
     <!-- 日記入力エリア -->
